@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{Component} from 'react';
+//import logo from './logo.svg';
 import './App.css';
+import Header from './component/header/Header';
+import Home from './component/screen/home'
+import About from './component/screen/about'
+import Contact from './component/screen/contact'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+//using state
+  state = {
+    screenName: "Home"
+  }
+
+ //update screen name for using arrow function
+ 
+ updateScreenName = (value) => {
+   this.setState = ({screenName: value})
+ }
+
+  render(){
+ 
+      const { screenName } = this.state;
+     
+    return(
+      <div className="App">
+        <Header changeScreen={this.updateScreenName} currentScreen={screenName} />
+         { screenName === "Home" && <Home /> }
+         { screenName === "About" && <About/> }
+         { screenName === "Contact" && <Contact/> }       
+         </div>
+    );
+  }
 }
 
 export default App;
